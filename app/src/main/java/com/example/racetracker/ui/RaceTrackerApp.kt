@@ -52,6 +52,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.racetracker.R
 import com.example.racetracker.ui.theme.RaceTrackerTheme
+import kotlinx.coroutines.launch
 
 @Composable
 fun RaceTrackerApp() {
@@ -68,8 +69,8 @@ fun RaceTrackerApp() {
     }
     var raceInProgress by remember { mutableStateOf(false) }
     LaunchedEffect(playerOne, playerTwo) {
-        playerOne.run()
-        playerTwo.run()
+        launch { playerOne.run() }
+        launch { playerTwo.run() }
         raceInProgress = false
     }
     RaceTrackerScreen(
